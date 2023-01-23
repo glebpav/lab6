@@ -5,7 +5,6 @@
 
 List createList() {
     List list;
-    list.length = 0;
     list.head = NULL;
     return list;
 }
@@ -41,6 +40,17 @@ void pushElementToList(List *list, char sign) {
         }
         nextItem->next = item;
     }
+}
+
+void clearList(List *list) {
+    Item *item = list->head;
+    if (item == NULL) return;
+    while (item->next != NULL) {
+        Item *buf = item->next;
+        free(item);
+        item = buf;
+    }
+    free(item);
 }
 
 void modifyList(List *list) {
